@@ -19,7 +19,7 @@ Student1427806 Trần Thị Khánh Vân
 
 ============================
 
-eProject documentation at https://github.com/lnnhi1310/Kitchen-Appliances/tree/main/documentary
+eProject documentation at https://github.com/NinoSayo/BidSpirit/tree/main/document
 
 ============================
 
