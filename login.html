@@ -1,16 +1,16 @@
 <link rel="stylesheet" href="login.css">
 <h1 align="center">Login</h1>
-      <form name="myForm" align="center">
+      <form name="LoginForm" align="center" action="index.html">
     <div>
         Username <br>
-        <input type="text" name="user" placeholder="Type your username" required> <br>
+        <input id="user" type="text" name="user" placeholder="Type your username" required> <br>
     </div>
     <div>
         Password <br>
-        <input type="password" name="password" placeholder="type your password" required> <br>
+        <input id="password" type="password" name="password" placeholder="type your password" required> <br>
     </div>
     <a href="#">Forgot password?</a>
     <div>
-        <input type="submit" value="Login" id="login">
+        <input type="submit" value="Login" id="login" onclick="login(LoginForm)">
     </div>
 </form>
