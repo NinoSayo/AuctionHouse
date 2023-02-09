@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="Contact.css">
 <h1>AuctionHouse Contact Form</h1>
-<form class="cf">
+<form  onsubmit="contact()" class="cf">
   <div class="half left cf">
-    <input type="text" id="input-name" placeholder="Name">
-    <input type="email" id="input-email" placeholder="Email address">
-    <input type="text" id="input-subject" placeholder="Subject">
+    <input type="text" id="input-name" placeholder="Name" required>
+    <input type="text" id="input-email" placeholder="Email address">
+    <input type="text" id="input-subject" placeholder="Subject" required>
   </div>
   <div class="half right cf">
-    <textarea name="message" type="text" id="input-message" placeholder="Message"></textarea>
+    <textarea name="message" type="text" id="input-message" placeholder="Message" required></textarea>
   </div> 
   <input type="submit" value="Submit" id="input-submit"> 
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d582.6030407227533!2d106.68195875238902!3d10.790584904368163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528d35939c66f%3A0xe52e3ed732b15272!2sFPT%20Polytechnic%20HCM!5e0!3m2!1sen!2s!4v1675846069699!5m2!1sen!2s" width="500" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -35,3 +35,18 @@
     </div>
   </div>
 </form> 
+<script>
+  function contact(){
+   let email = document.getElementById('input-email').value;
+   let emailValid = /^\w+([.-_]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email);
+   if(!emailValid){
+    alert('Please enter a valid email');
+    window.location.reload();
+    return;
+   }
+   else{
+    alert('Send successful!');
+    window.location.reload();
+  }
+}
+</script>

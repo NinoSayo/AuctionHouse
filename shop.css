@@ -142,7 +142,7 @@ a:hover {
     transform: translateY(-50%);
 }
 .section-products #product-1 .part-1::before {
-    background: url("../../../assets/img/Product1.jpg") no-repeat center;
+    background: url("Asset/chén\ Đài\ Loan.jpg") no-repeat center;
     background-size: cover;
     transition: all 0.3s;
 }
@@ -186,5 +186,6 @@ a:hover {
     background: url("../../../assets/img/Product9.jpg") no-repeat center;
     background-size: cover;
 }
+
 
 
