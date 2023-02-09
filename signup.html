@@ -1,31 +1,95 @@
-<link rel="stylesheet" href="style.css">
-<h1 align="center">Creating an account</h1>
-<form name="myForm" align="center">
-<div>
-    First name <br>
-    <input type="text" name="Fname" placeholder="Enter First Name"> <br>
-</div>
-<div>
-    Last name <br>
-    <input type="text" name="Lname"placeholder="Enter last name"> <br>
-</div>
-<div>
-    Email <br>
-    <input type="email" name="email" placeholder="Enter email"> <br>
-</div>
-<div>
-    Password <br>
-    <input type="password" name="Pass" placeholder="Enter password"> <br>
-</div>
-<div>
-    Confirm password <br>
-    <input type="password" name="Pass" placeholder="Repeat your password"> <br>
-</div>
-<div>
-    <input type="checkbox" required>I'm atleast 18 years old <br>
-    <input type="checkbox" required>I accept the terms of service
-</div>
-<div>
-    <input type="submit" value="Sign Up">
-</div>
-</form>
+<link rel="stylesheet" href="signup.css">
+<form onsubmit="signup()" style="border:1px solid #ccc">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+
+      <label for="username"><b>Username</b></label>
+      <input type="text" name="username" id="username" placeholder="Enter username" >
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" id="email" name="email" >
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" id="psw" name="psw" >
+  
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" >
+  
+      <label>
+        <input type="checkbox" name="remember" style="margin-bottom:15px" > Are you over 18?
+      </label>
+  
+      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+  
+      <div class="clearfix">
+        <button type="button" class="cancelbtn" onclick="location.href='index.html'">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form>
+
+<script>
+  function signup() {
+    event.preventDefault();
+    // console.log('working');
+
+    let username = document.querySelector('input[name="username"]').value;
+    let email = document.querySelector('input[name="email"]').value;
+    let password = document.querySelector('input[name="psw"]').value;
+    let repeatPassword = document.querySelector('input[name=psw-repeat]').value;
+
+    if (username === ''|| email ===''|| password === ''|| repeatPassword ==='') {
+        alert('All field are required');
+        return;
+    }
+
+    let userValid = /^[^@]+$/.test(username);
+    if (!userValid) {
+      alert('Username should not contain email-like characters (@, ., _, etc.');
+      return;
+    }
+
+    let emailValid = /^\w+([.-_]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email);
+    if (!emailValid) {
+        alert('Please enter a valid email');
+        return;
+    }
+
+    if (password != repeatPassword){
+        alert('Password do not match');
+        return;
+    }
+
+    if(!document.querySelector('input[name="remember"]').checked){
+        alert('You must be over 18 to sign up');
+        return;
+    }
+
+    let user = {
+      id: Date.now(),
+      username: username,
+      email: email,
+      password: password,
+
+    }
+    let existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+    for (let i = 0; i < existingUsers.length; i++) {
+      if (existingUsers[i].username === username) {
+        alert("This username already taken");
+        return;
+      }
+
+      if (existingUsers[i].email === email) {
+        alert("This email was taken");
+        return;
+      }
+    }
+
+    existingUsers.push(user);
+    localStorage.setItem("users", JSON.stringify(existingUsers));
+
+    alert("Sign up sucessful!");
+    window.location.href = "login.html";
+  }

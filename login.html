@@ -1,16 +1,57 @@
 <link rel="stylesheet" href="login.css">
-<h1 align="center">Login</h1>
-      <form name="LoginForm" align="center" action="index.html">
-    <div>
-        Username <br>
-        <input id="user" type="text" name="user" placeholder="Type your username" required> <br>
+<form onsubmit="checkData()">
+    <div class="imgcontainer">
+      <img src="Asset/Avatar.png" alt="Avatar" class="avatar">
     </div>
-    <div>
-        Password <br>
-        <input id="password" type="password" name="password" placeholder="type your password" required> <br>
+  
+    <div class="container">
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+  
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
     </div>
-    <a href="#">Forgot password?</a>
-    <div>
-        <input type="submit" value="Login" id="login" onclick="login(LoginForm)">
+  
+    <div class="container" style="background-color:#f1f1f1">
+      <a href="#" class="cancelbtn">Cancel</a>
+      <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
-</form>
+  </form>
+
+  <script>
+   function checkData(){
+
+let username = document.querySelector('input[name="username"]').value;
+let password = document.querySelector('input[name="psw"]').value;
+
+let existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+let isValidUser = false ;
+
+for (let i = 0; i < existingUsers.length; i++){
+  if(existingUsers[i].username === username){
+    if(existingUsers[i].password === password){
+     isValidUser = true;
+     break;
+    }
+    else{
+      alert("Wrong password!");
+      return;
+    }
+  }
+}
+if(isValidUser){
+  alert("Login Successful!");
+  window.location.href="index.html";
+  localStorage.setItem('LoggedInUser',username);
+}
+else{
+    alert("Invalid username");
+    return;
+}
+}
+  </script>
