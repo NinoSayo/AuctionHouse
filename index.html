@@ -74,34 +74,34 @@
               <h4>Company</h4>
               <ul>
                 <li><a href="#!about">About us</a></li>
-                <li><a href="#">Privacy policy</a></li>
-                <li><a href="#">Cookies policy</a></li>
-                <li><a href="#">Term of Service</a></li>
+                <li><a href="">Privacy policy</a></li>
+                <li><a href="">Cookies policy</a></li>
+                <li><a href="">Term of Service</a></li>
               </ul>
             </div>
             <div class="footer-col">
               <h4>Get Help</h4>
               <ul>
                 <li><a href="#">FAQs</a></li>
-                <li><a href="#">Shipping</a></li>
-                <li><a href="#">Bidding history</a></li>
-                <li><a href="#">Bidding status</a></li>
-                <li><a href="#">Payment options</a></li>
+                <li><a href="">Shipping</a></li>
+                <li><a href="">Bidding history</a></li>
+                <li><a href="">Bidding status</a></li>
+                <li><a href="">Payment options</a></li>
               </ul>
             </div>
             <div class="footer-col">
               <h4>More</h4>
               <ul>
                 <li><a href="#!contact">Contact Us</a></li>
-                <li><a href="#">Want to sell?</a></li>
+                <li><a href="">Want to sell?</a></li>
               </ul>
             </div>
             <div class="footer-col">
               <h4>Follow Us</h4>
               <div class="social-links">
-               <a href="#"><i class="fab fa-facebook-f"></i></a>
-               <a href="#"><i class="fab fa-twitter"></i></a>
-               <a href="#"><i class="fab fa-instagram"></i></a>
+               <a href=""><i class="fab fa-facebook-f"></i></a>
+               <a href=""><i class="fab fa-twitter"></i></a>
+               <a href=""><i class="fab fa-instagram"></i></a>
               </div>
             </div>
           </div>
@@ -110,42 +110,18 @@
         <div class="ticker">
           <div class="ticker_list">
             <div class="ticker_item">
-              <p class="extra">Current Date : <span id="clock"></span></p>
+              <p>Current Time : <span id="clock"></span></p>
             </div>
+            <div class="ticker_item">
+              <p>Current Date : <span id="date"></span></p>
+            </div>
+            <div id="locationContainer">
+            <p>Your location : <span id="location"></span></p>
+          </div>
           </div>
         </div>
       </footer>
 </body>
 <script src="route.js"></script>
-<script>
-  let loggedInUser = localStorage.getItem('LoggedInUser');
-
-if (loggedInUser) {
-  document.querySelector('.nav-link[href="#!login"]').innerHTML = "Logout";
-  document.querySelector('.nav-link[href="#!signup"]').innerHTML = loggedInUser;
-  document.querySelector('.nav-link[href="#!signup"]').style.pointerEvents = "none";
-  document.querySelector('.nav-link[href="#!signup"]').style.color = "red";
-
-
-  document.querySelector('.nav-link[href="#!login"]').addEventListener("click",function(){
-    localStorage.removeItem('LoggedInUser');
-    window.location.reload();
-  })
-};
-
-setInterval(function() {
-  var currentTime = new Date();
-  var hours = currentTime.getHours();
-  var minutes = currentTime.getMinutes();
-  var seconds = currentTime.getSeconds();
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
-  var clock = hours + ":" + minutes + ":" + seconds;
-  document.getElementById("clock").innerHTML = clock;
-}, 1000);
-</script>
+<script src="scripts.js"></script>
 </html>
