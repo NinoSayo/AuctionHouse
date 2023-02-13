@@ -92,14 +92,26 @@ a {
 
 hr {
   border: 1px solid lightgrey;
+  width: 90%;
 }
 
 span.price {
   float: right;
+  padding-right: 10px;
   color: grey;
 }
+.remove-item, .increase-item, .decrease-item {
+  border: 0;
+}
+.increase-decrease{
+  margin-left: 5px;
+}
+.remove-item{
+  margin-right:5px;
+  color:red;
+}
 </style>
-<h1>Checkout</h1>
+<h1 align="center">Checkout</h1>
     <div class="row">
       <div class="col-75">
         <div class="container2">
@@ -164,83 +176,124 @@ span.price {
         </div>
       </div>
       <div class="col-25">
-        <div class="container">
-          <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart-item-count">0</b></span></h4>
-          <div id="cart-items">
-          </div>
-          <hr>
-          <p>Total <span class="price" style="color:black"><b id="cart-total">$0</b></span></p>
+        <div class="checkout">
         </div>
+      </div>
       </div>      
     </div>
 
 <script>
-window.onload = function() {
-  displayCart();
-}
-
-const displayCart = () => {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  let cartItemCount = document.querySelector("#cart-item-count");
-  let cartItems = document.querySelector("#cart-items");
-  let cartTotal = document.querySelector("#cart-total");
-
-  // Tính tổng số sản phẩm
-  let itemCount = 0;
-  for (let i = 0; i < cart.length; i++) {
-    itemCount += cart[i].quantity;
+$(document).ready(function() {
+    displayCart();
+    });
+    
+    const displayCart = () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = 0;
+    
+    let cartContainer = $(".checkout");
+    let cartItems = $("<div></div>");
+    cartItems.html("<h4>Cart<span class='price' style='color:black'><i class='fa fa-shopping-cart'></i> <b>" + cart.length + "</b></span></h4><hr>");
+    
+    for (let i = 0; i < cart.length; i++) {
+  const item = cart[i];
+  const itemPrice = parseFloat(item.price.replace('$', ''));
+  if (!isNaN(itemPrice)) {
+    total += itemPrice * item.quantity;
   }
-  cartItemCount.innerHTML = itemCount;
+  let itemElement = $("<p></p>");
+  itemElement.html(item.title + "&nbsp" + "x" + item.quantity + "&nbsp;");
 
-  // Hiển thị sản phẩm trong giỏ hàng
-  cartItems.innerHTML = "";
-  let total = 0;
-  for (let i = 0; i < cart.length; i++) {
-    let item = cart[i];
-    total += item.price * item.quantity;
-    cartItems.innerHTML += `
-      <p>
-        <a href="#">${item.title}</a> 
-        <span class="price">$${item.price}</span>
-        <button class="btn btn-info btn-sm" onclick="updateCartQuantity(${item.id}, -1)">-</button>
-        <span class="badge badge-secondary">${item.quantity}</span>
-        <button class="btn btn-info btn-sm" onclick="updateCartQuantity(${item.id}, 1)">+</button>
-        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">X</button>
-      </p>
-    `;
-  }
-  cartTotal.innerHTML = `$${total}`;
-};
+  let removeBtn = $("<button class='remove-item'>x</button>");
+  removeBtn.click(function() {
+    removeItem(item.id);
+  });
+  itemElement.prepend(removeBtn);
 
-// Hàm cập nhật số lượng sản phẩm trong giỏ hàng
-const updateCartQuantity = (id, change) =>{let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let item = cart.find(i => i.id === id);
-if (item) {
-item.quantity = item.quantity + change;
-if (item.quantity <= 0) {
-cart = cart.filter(i => i.id !== id);
+  let increaseBtn = $("<button class='increase-item increase-decrease'> +</button>");
+  increaseBtn.click(function() {
+    increaseItem(item.id);
+  });
+  itemElement.append(increaseBtn);
+
+  let decreaseBtn = $("<button class='decrease-item increase-decrease'>-</button>");
+  decreaseBtn.click(function() {
+    decreaseItem(item.id);
+  });
+  itemElement.append(decreaseBtn);
+
+  itemElement.append("<span class='price'>" + item.price + "</span>");
+
+  cartItems.append(itemElement);
 }
-}
-localStorage.setItem("cart", JSON.stringify(cart));
-};
+    
+    let totalElement = $("<p></p>");
+    totalElement.html("Total <span class='price' style='color:black'><b>$" + Math.round(total * 100) / 100 + "</b></span>");
+    cartItems.append(totalElement);
+    
+    cartContainer.html("");
+    cartContainer.append(cartItems);
+    };
+    
+    const decreaseItem = (id) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    for (let i = 0; i < cart.length; i++) {
+    if (cart[i].id === id) {
+    cart[i].quantity--;
+    if (cart[i].quantity <= 0) {
+    cart.splice(i, 1);
+    }
+    break;
+    }
+    }
+    
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCart();
+    };
+    
+    const increaseItem = (id) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    for (let i = 0; i < cart.length; i++) {
+    if (cart[i].id === id) {
+    cart[i].quantity++;
+    break;
+    }
+    }
+    
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCart();
+    };
+    
+    const removeItem = (id) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Hàm xóa sản phẩm trong giỏ hàng
-const removeFromCart = id => {
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-cart = cart.filter(item => item.id !== id);
-
-localStorage.setItem("cart", JSON.stringify(cart));
-};
-
-// Hàm tăng số lượng sản phẩm trong giỏ hàng
-const increaseQuantity = id => {
-updateCartQuantity(id, 1);
-};
-
-// Hàm giảm số lượng sản phẩm trong giỏ hàng
-const decreaseQuantity = id => {
-updateCartQuantity(id, -1);
-};
-
+    for (let i = 0; i < cart.length; i++) {
+    if (cart[i].id === id) {
+    cart.splice(i, 1);
+    break;
+    }
+    }
+    
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCart();
+    };
+    
+    $(document).ready(function() {
+    displayCart();
+    
+    $(".checkout").on("click", ".remove", function() {
+    let id = $(this).data("id");
+    removeItem(id);
+    });
+    
+    $(".checkout").on("click", ".decrease", function() {
+    let id = $(this).data("id");
+    decreaseQuantity(id);
+    });
+    });
+    
 </script>
+
+
