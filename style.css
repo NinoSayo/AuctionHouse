@@ -126,3 +126,34 @@ font-family:"Audiowide",sans-serif;
 i{
     color:var(--primary-color);
 }
+.ticker {
+    text-align: center;
+    color: white;
+    display: flex;
+  }
+  
+  .ticker_list {
+    display: flex;
+    margin-top: 20px;
+    animation: ticker 120s infinite cubic-bezier(.12,.5,.85,.71);
+  }
+  
+  .ticker:hover .ticker_list {
+    animation-play-state: paused;
+  }
+  
+  .ticker_item {
+    margin-right: 20px;
+  }
+  
+  @keyframes ticker {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+@media only screen and (max-width:890px) {
+    .ticker_list{
+        animation-play-state: paused;
+    }
+}
