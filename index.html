@@ -40,9 +40,9 @@
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="#upcoming">Upcoming Online Auctions</a>
+                  <a class="dropdown-item" href="#Popular">Popular Items</a>
                   <a class="dropdown-item" href="#Sponsored">Sponsored Auctions</a>
                   <a class="dropdown-item" href="#Completed">Completed Auctions</a>
-                  <a class="dropdown-item" href="">Auction houses</a>
                 </div>
               </li>
             <li class="nav-item dropdown">
@@ -106,7 +106,14 @@
             </div>
           </div>
         </div>
-        <p class="copyright">&copy; AuctionHouse. All Rights Reserved</p>
+        <p class="extra">&copy; AuctionHouse. All Rights Reserved</p>
+        <div class="ticker">
+          <div class="ticker_list">
+            <div class="ticker_item">
+              <p class="extra">Current Date : <span id="clock"></span></p>
+            </div>
+          </div>
+        </div>
       </footer>
 </body>
 <script src="route.js"></script>
@@ -124,6 +131,21 @@ if (loggedInUser) {
     localStorage.removeItem('LoggedInUser');
     window.location.reload();
   })
-}
+};
+
+setInterval(function() {
+  var currentTime = new Date();
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
+  var seconds = currentTime.getSeconds();
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  var clock = hours + ":" + minutes + ":" + seconds;
+  document.getElementById("clock").innerHTML = clock;
+}, 1000);
 </script>
 </html>
