@@ -165,13 +165,82 @@ span.price {
       </div>
       <div class="col-25">
         <div class="container">
-          <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-          <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-          <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-          <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-          <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+          <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart-item-count">0</b></span></h4>
+          <div id="cart-items">
+          </div>
           <hr>
-          <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+          <p>Total <span class="price" style="color:black"><b id="cart-total">$0</b></span></p>
         </div>
-      </div>
+      </div>      
     </div>
+
+<script>
+window.onload = function() {
+  displayCart();
+}
+
+const displayCart = () => {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cartItemCount = document.querySelector("#cart-item-count");
+  let cartItems = document.querySelector("#cart-items");
+  let cartTotal = document.querySelector("#cart-total");
+
+  // Tính tổng số sản phẩm
+  let itemCount = 0;
+  for (let i = 0; i < cart.length; i++) {
+    itemCount += cart[i].quantity;
+  }
+  cartItemCount.innerHTML = itemCount;
+
+  // Hiển thị sản phẩm trong giỏ hàng
+  cartItems.innerHTML = "";
+  let total = 0;
+  for (let i = 0; i < cart.length; i++) {
+    let item = cart[i];
+    total += item.price * item.quantity;
+    cartItems.innerHTML += `
+      <p>
+        <a href="#">${item.title}</a> 
+        <span class="price">$${item.price}</span>
+        <button class="btn btn-info btn-sm" onclick="updateCartQuantity(${item.id}, -1)">-</button>
+        <span class="badge badge-secondary">${item.quantity}</span>
+        <button class="btn btn-info btn-sm" onclick="updateCartQuantity(${item.id}, 1)">+</button>
+        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">X</button>
+      </p>
+    `;
+  }
+  cartTotal.innerHTML = `$${total}`;
+};
+
+// Hàm cập nhật số lượng sản phẩm trong giỏ hàng
+const updateCartQuantity = (id, change) =>{let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let item = cart.find(i => i.id === id);
+if (item) {
+item.quantity = item.quantity + change;
+if (item.quantity <= 0) {
+cart = cart.filter(i => i.id !== id);
+}
+}
+localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+// Hàm xóa sản phẩm trong giỏ hàng
+const removeFromCart = id => {
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart = cart.filter(item => item.id !== id);
+
+localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+// Hàm tăng số lượng sản phẩm trong giỏ hàng
+const increaseQuantity = id => {
+updateCartQuantity(id, 1);
+};
+
+// Hàm giảm số lượng sản phẩm trong giỏ hàng
+const decreaseQuantity = id => {
+updateCartQuantity(id, -1);
+};
+
+</script>
