@@ -8,5 +8,6 @@ app.config(function($routeProvider){
     .when("/signup",{templateUrl:"signup.html"})
     .when("/login",{templateUrl:"login.html"})
     .when("/cart",{templateUrl:"cart.html"})
+    .when("/product1",{templateUrl:"product1.html"})
 });
 

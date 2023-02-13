@@ -3,6 +3,9 @@
     padding:0;
     margin:0;
 }
+.img-1{
+    width: 100px;
+}
 :root{
     --primary-color:#b81d1d;
     --secondary-color:#333;
@@ -44,7 +47,7 @@ font-family:"Audiowide",sans-serif;
     text-decoration-color:red;
 }
 .stepBox{
-    margin-top: 10px;
+    margin: 10px;
     text-align: center;
     background-color: rgb(207, 205, 205);
     padding: 20px 10px;
