@@ -142,48 +142,48 @@ a:hover {
     transform: translateY(-50%);
 }
 .section-products #product-1 .part-1::before {
-    background: url("Asset/imgproduct/hinh\ anh/hinh1.jpg") no-repeat center;
+    background: url("https://i.etsystatic.com/13954795/r/il/906074/4558799695/il_794xN.4558799695_jf62.jpg") no-repeat center;
     background-size: cover;
     transition: all 0.3s;
 }
 
 .section-products #product-2 .part-1::before {
-    background: url("../../../assets/img/Product2.jpg") no-repeat center;
+    background: url("https://i.etsystatic.com/24111290/r/il/05e208/2408205374/il_794xN.2408205374_j97y.jpg") no-repeat center;
     background-size: cover;
 }
 
 .section-products #product-3 .part-1::before {
-    background: url("../../../assets/img/DocLaBinhDuong.jpg") no-repeat center;
+    background: url("https://m.media-amazon.com/images/I/712VjxweZzL._SX522_.jpg") no-repeat center;
     background-size: cover;
 }
 
 .section-products #product-4 .part-1::before {
-    background: url("../../../assets/img/Product3.jpg") no-repeat center;
+    background: url("https://m.media-amazon.com/images/I/7193V9WSPML._SX679_.jpg") no-repeat center;
     background-size: cover;
 }
 
 .section-products #product-5 .part-1::before {
-    background: url("../../../assets/img/Product4.jpg") no-repeat center;
+    background: url("https://m.media-amazon.com/images/I/41jimoWXXvL.jpg") no-repeat center;
     background-size: cover;
 }
 .section-products #product-6 .part-1::before {
-    background: url("../../../assets/img/Product5.jpg") no-repeat center;
+    background: url("https://i.etsystatic.com/24111290/r/il/6e601b/2482235783/il_794xN.2482235783_kpvi.jpg") no-repeat center;
     background-size: cover;
 }
 .section-products #product-7 .part-1::before {
-    background: url("../../../assets/img/Product6.jpg") no-repeat center;
+    background: url("https://i.etsystatic.com/34451090/r/il/edee0d/3799079506/il_794xN.3799079506_s8ri.jpg") no-repeat center;
     background-size: cover;
 }
 .section-products #product-8 .part-1::before {
-    background: url("../../../assets/img/Product7.jpg") no-repeat center;
+    background: url("https://i.etsystatic.com/11308886/r/il/3a2c77/849028593/il_794xN.849028593_9qx7.jpg") no-repeat center;
     background-size: cover;
 }
 .section-products #product-9 .part-1::before {
-    background: url("../../../assets/img/Product8.jpg") no-repeat center;
+    background: url("https://m.media-amazon.com/images/I/81orA+t+QdL._SX425_.jpg") no-repeat center;
     background-size: cover;
 }
 .section-products #product-10 .part-1::before {
-    background: url("../../../assets/img/Product9.jpg") no-repeat center;
+    background: url("https://m.media-amazon.com/images/I/71vp5VdrC9S._SX679_.jpg") no-repeat center;
     background-size: cover;
 }
 
