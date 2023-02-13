@@ -4,10 +4,12 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
 }
-body{
-    line-height: 1.5;
+body
+{
+  line-height: 1.5;
+  height: 100vh;
+font-family:"Audiowide",sans-serif;
 }
 .card-wrapper{
     max-width: 900px;
