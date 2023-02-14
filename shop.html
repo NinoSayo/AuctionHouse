@@ -14,19 +14,7 @@
                 <div id="product-1" class="single-product">
 
 
-                    <div class="part-1">
-                        <ul>
-                            <li><a class="cart-icon" href=""><i class="fas fa-shopping-cart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-plus"></i></a></li>
-                            <li><a href="#!product1"><i class="fas fa-expand"></i></a></li>
-                          </ul>                          
-                      </div>
-                    <div class="part-2">
-                        <h3 class="product-title">19 th Century Ottoman Empire oil lamp</h3>
-                        <h4 class="product-price">$519.99</h4>
-                    </div>
-
+                   
 
 
                   <div class="part-1">
@@ -268,7 +256,7 @@ $(document).on("click", ".cart-icon", function(event) {
 event.preventDefault();
 
 const products = document.getElementsByClassName("single-product");
-parent of f49a472 (V1)
+
 
 for (let i = 0; i < products.length; i++) {
   const product = products[i];
@@ -311,7 +299,9 @@ const addToCart = (event, item) => {
 
   alert(`${item.title} added to your cart.`);
 };
+});
 
- parent of f49a472 (V1)
+
+
 
 </script>
