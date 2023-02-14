@@ -99,6 +99,9 @@
     float: right;
     color: grey;
   }
+  .cart-item-quantity {
+    margin-right:10px;
+  }
   button.add-item,
   button.remove-item {
     border: none;
@@ -268,7 +271,7 @@
           </div>
         </div>
         `;
-        sum += item.price * item.quantity;
+        sum += parseFloat(item.price.replace("$","")) * item.quantity;
       }
       cartItems += `
     <div class="cart-total">
