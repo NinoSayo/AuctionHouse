@@ -99,6 +99,9 @@ hr {
   float: right;
   color: grey;
 }
+.cart-item-quantity{
+  margin-right: 10px;
+}
 button.add-item,
 button.remove-item {
   border: none;
@@ -254,24 +257,31 @@ $(document).on("click", ".add-item", function(event) {
   }
 
   function displayCartItems() {
-  let cartItems = "";
-  for (let i = 0; i < cart.length; i++) {
-    let item = cart[i];
+    let cartItems = "";
+    let sum = 0;
+    for (let i = 0; i < cart.length; i++) {
+      let item = cart[i];
+      cartItems += `
+      <div class="cart-item">
+        <span class="cart-item-title">${item.title}</span>
+        <span class="cart-item-quantity">x${item.quantity}</span>
+        <span class="cart-item-price">${item.price}</span>
+        <div class="cart-item-controls">
+          <button class="add-item" data-id="${item.id}">+</button>
+          <button class="remove-item" data-id="${item.id}">-</button>
+        </div>
+      </div>
+      `;
+      sum += parseFloat(item.price.replace('$', '')) * item.quantity;
+    }
     cartItems += `
-    <div class="cart-item">
-  <span class="cart-item-title">${item.title}</span>
-  <span class="cart-item-price">${item.price}</span>
-  <div class="cart-item-controls">
-    <button class="add-item" data-id="${item.id}">+</button>
-    <button class="remove-item" data-id="${item.id}">-</button>
+  <div class="cart-total">
+    Total: $${sum.toFixed(2)}
   </div>
-  
-</div>
-
-    `;
+`;
+    $("#cart-items").html(cartItems);
   }
-  $("#cart-items").html(cartItems);
-}
+  
   function removeItemFromCart(itemId) {
   let item = cart.find(item => item.id === itemId);
   if (item.quantity === 1) {
