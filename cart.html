@@ -299,14 +299,12 @@ $(document).on("click", ".add-item", function(event) {
   displayCartItems();
 }
 
-function addItemToCart(itemId) {
-  let item = cart.find(item => item.id === itemId);
-  if (item) {
-    item.quantity++;
-  } else {
-    item = { id: itemId, title: "Product " + itemId, price: 10, quantity: 1 };
-    cart.push(item);
-  }
+if (item) {
+  item.quantity += 1;
+} else {
+  item = { id: itemId, title: "Product " + itemId, price: 10, quantity: 1 };
+  cart.push(item);
+}
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartItemCount();
   displayCartItems();
