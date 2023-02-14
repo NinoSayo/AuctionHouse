@@ -1,318 +1,311 @@
 <style>
-* {box-sizing: border-box}
-
-input{
-  margin-top: 5px;
-  text-align: center;
-}
-a{
-  margin-top:5px;
-}
-body
-{
-  height: 100vh;
-font-family:"Audiowide",sans-serif;
-}
-h1{
-    text-decoration: underline;
-    text-decoration-color: var(--primary-color);
-}
-.row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-  margin: 0 -16px;
-}
-.col-25 {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
-}
-
-.col-50 {
-  -ms-flex: 50%; /* IE10 */
-  flex: 50%;
-}
-
-.col-75 {
-  -ms-flex: 75%; /* IE10 */
-  flex: 75%;
-}
-.col-25,
-.col-50,
-.col-75 {
-  padding: 0 16px;
-}
-
-.container2 {
-  background-color: #f2f2f2;
-  padding: 5px 20px 15px 20px;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-}
-input[type=text] {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-label {
-  margin-bottom: 10px;
-  display: block;
-}
-
-.icon-container {
-  margin-bottom: 20px;
-  padding: 7px 0;
-  font-size: 24px;
-}
-
-.btn {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  width: 100%;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 17px;
-}
-
-.btn:hover {
-  background-color: black;
-  color: white;
-}
-
-a {
-  color: #2196F3;
-}
-
-hr {
-  border: 1px solid lightgrey;
-}
-
-.cart-item-price {
-  margin-right:10px;
-  float: right;
-  color: grey;
-}
-.cart-item-quantity{
-  margin-right: 10px;
-}
-button.add-item,
-button.remove-item {
-  border: none;
-  background: none;
-  color: red;
-  display: block;
-}
-.cart-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.item-details {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.cart-item-title {
-  margin-right: 8px;
-}
-
-.item-controls {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.add-item {
-  margin-right: 8px;
-}
-.cart-item-controls {
-  display: flex;
-  align-items: center;
-}
-
-.remove-item {
-  margin-right: 10px;
-}
-
-.fa-trash {
-  color: red;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-
-</style>
-<h1>Checkout</h1>
-    <div class="row">
-      <div class="col-75">
-        <div class="container2">
-          <form>
-            <div class="row">
-              <div class="col-50">
-                <h3>Billing Address</h3>
-                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                <input type="text" id="fname" name="firstname">
-                <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                <input type="text" id="email" name="email">
-                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                <input type="text" id="adr" name="address">
-                <label for="city"><i class="fa fa-institution"></i> City</label>
-                <input type="text" id="city" name="city">
-    
-                <div class="row">
-                  <div class="col-50">
-                    <label for="state">State</label>
-                    <input type="text" id="state" name="state" >
-                  </div>
-                  <div class="col-50">
-                    <label for="zip">Zip</label>
-                    <input type="text" id="zip" name="zip" p>
+  * {box-sizing: border-box}
+  
+  input{
+    margin-top: 5px;
+    text-align: center;
+  }
+  a{
+    margin-top:5px;
+  }
+  body
+  {
+    height: 100vh;
+  font-family:"Audiowide",sans-serif;
+  }
+  h1{
+      text-decoration: underline;
+      text-decoration-color: var(--primary-color);
+  }
+  .row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin: 0 -16px;
+  }
+  .col-25 {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+  }
+  
+  .col-50 {
+    -ms-flex: 50%; /* IE10 */
+    flex: 50%;
+  }
+  
+  .col-75 {
+    -ms-flex: 75%; /* IE10 */
+    flex: 75%;
+  }
+  .col-25,
+  .col-50,
+  .col-75 {
+    padding: 0 16px;
+  }
+  
+  .container2 {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+  }
+  input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+  }
+  
+  .btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  .btn:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  a {
+    color: #2196F3;
+  }
+  
+  hr {
+    border: 1px solid lightgrey;
+  }
+  
+  .cart-item-price {
+    margin-right:10px;
+    float: right;
+    color: grey;
+  }
+  button.add-item,
+  button.remove-item {
+    border: none;
+    background: none;
+    color: red;
+    display: block;
+  }
+  .cart-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .cart-item-title {
+    margin-right: 8px;
+  }
+  
+  .item-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .add-item {
+    margin-right: 8px;
+  }
+  .cart-item-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .remove-item {
+    margin-right: 10px;
+  }
+  
+  .fa-trash {
+    color: red;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  
+  </style>
+  <h1>Checkout</h1>
+      <div class="row">
+        <div class="col-75">
+          <div class="container2">
+            <form>
+              <div class="row">
+                <div class="col-50">
+                  <h3>Billing Address</h3>
+                  <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                  <input type="text" id="fname" name="firstname">
+                  <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                  <input type="text" id="email" name="email">
+                  <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                  <input type="text" id="adr" name="address">
+                  <label for="city"><i class="fa fa-institution"></i> City</label>
+                  <input type="text" id="city" name="city">
+      
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="state">State</label>
+                      <input type="text" id="state" name="state" >
+                    </div>
+                    <div class="col-50">
+                      <label for="zip">Zip</label>
+                      <input type="text" id="zip" name="zip" p>
+                    </div>
                   </div>
                 </div>
+      
+                <div class="col-50">
+                  <h3>Payment</h3>
+                  <label for="fname">Accepted Cards</label>
+                  <div class="icon-container">
+                      <i class="fa-brands fa-cc-visa"style="color:navy;"></i>
+                    <i class="fa-brands fa-cc-jcb" style="color:blue;"></i>
+                    <i class="fa-brands fa-cc-mastercard" style="color:red;"></i>
+                    <i class="fa-brands fa-cc-paypal" style="color:orange;"></i>
+                  </div>
+                  <label for="cname">Name on Card</label>
+                  <input type="text" id="cname" name="cardname" >
+                  <label for="ccnum">Credit card number</label>
+                  <input type="text" id="ccnum" name="cardnumber" >
+                  <label for="expmonth">Exp Month</label>
+                  <input type="text" id="expmonth" name="expmonth" >
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="expyear">Exp Year</label>
+                      <input type="text" id="expyear" name="expyear" >
+                    </div>
+                    <div class="col-50">
+                      <label for="cvv">CVV</label>
+                      <input type="text" id="cvv" name="cvv" >
+                    </div>
+                  </div>
+                </div>
+                
               </div>
-    
-              <div class="col-50">
-                <h3>Payment</h3>
-                <label for="fname">Accepted Cards</label>
-                <div class="icon-container">
-                    <i class="fa-brands fa-cc-visa"style="color:navy;"></i>
-                  <i class="fa-brands fa-cc-jcb" style="color:blue;"></i>
-                  <i class="fa-brands fa-cc-mastercard" style="color:red;"></i>
-                  <i class="fa-brands fa-cc-paypal" style="color:orange;"></i>
-                </div>
-                <label for="cname">Name on Card</label>
-                <input type="text" id="cname" name="cardname" >
-                <label for="ccnum">Credit card number</label>
-                <input type="text" id="ccnum" name="cardnumber" >
-                <label for="expmonth">Exp Month</label>
-                <input type="text" id="expmonth" name="expmonth" >
-                <div class="row">
-                  <div class="col-50">
-                    <label for="expyear">Exp Year</label>
-                    <input type="text" id="expyear" name="expyear" >
-                  </div>
-                  <div class="col-50">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" name="cvv" >
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-            <label>
-              <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-            </label>
-            <input type="submit" value="Continue to checkout" class="btn">
-          </form>
-        </div>
-      </div>
-      <div class="col-25">
-        <div class="container">
-          <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart-item-count"></b></span></h4>
-          <div id="cart-items">
+              <label>
+                <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+              </label>
+              <input type="submit" value="Continue to checkout" class="btn">
+            </form>
           </div>
-
         </div>
-      </div>      
-    </div>
-
-<script>
-$(document).ready(function() {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  // Update the cart item count
-  updateCartItemCount();
-
-  // Display the cart items
-  displayCartItems();
-
-  // Add event listener to remove item from cart
-  $(document).on("click", ".remove-item", function(event) {
-  event.preventDefault();
-  let itemId = $(this).data("id");
-  removeItemFromCart(itemId);
-});
-$(document).on("click", ".add-item", function(event) {
-  event.preventDefault();
-  let itemId = $(this).data("id");
-  addItemToCart(itemId);
-});
-function updateCartItemCount() {
-  let itemCount = 0;
-  for (let i = 0; i < cart.length; i++) {
-    itemCount += cart[i].quantity;
-  }
-  $("#cart-item-count").text(itemCount);
-}
-
-  function displayCartItems() {
-    let cartItems = "";
-    let sum = 0;
-    for (let i = 0; i < cart.length; i++) {
-      let item = cart[i];
-      cartItems += `
-      <div class="cart-item">
-        <span class="cart-item-title">${item.title}</span>
-        <span class="cart-item-quantity">x${item.quantity}</span>
-        <span class="cart-item-price">${item.price}</span>
-        <div class="cart-item-controls">
-          <button class="add-item" data-id="${item.id}">+</button>
-          <button class="remove-item" data-id="${item.id}">-</button>
-        </div>
+        <div class="col-25">
+          <div class="container">
+            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart-item-count"></b></span></h4>
+            <div id="cart-items">
+            </div>
+  
+          </div>
+        </div>      
       </div>
-      `;
-      sum += parseFloat(item.price.replace('$', '')) * item.quantity;
+  
+  <script>
+  $(document).ready(function() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+    // Update the cart item count
+    updateCartItemCount();
+  
+    // Display the cart items
+    displayCartItems();
+  
+    // Add event listener to remove item from cart
+    $(document).on("click", ".remove-item", function(event) {
+    event.preventDefault();
+    let itemId = $(this).data("id");
+    removeItemFromCart(itemId);
+  });
+  $(document).on("click", ".add-item", function(event) {
+    event.preventDefault();
+    let itemId = $(this).data("id");
+    addItemToCart(itemId);
+  });
+  function updateCartItemCount() {
+    let itemCount = 0;
+    for (let i = 0; i < cart.length; i++) {
+      itemCount += cart[i].quantity;
     }
-    cartItems += `
-  <div class="cart-total">
-    Total: $${sum.toFixed(2)}
-  </div>
-`;
-    $("#cart-items").html(cartItems);
+    $("#cart-item-count").text(itemCount);
   }
   
-  function removeItemFromCart(itemId) {
-  let item = cart.find(item => item.id === itemId);
-  if (item.quantity === 1) {
-    let updatedCart = cart.filter(item => item.id !== itemId);
-    cart = updatedCart;
-  } else {
-    item.quantity--;
+    function displayCartItems() {
+      let cartItems = "";
+      let sum = 0;
+      for (let i = 0; i < cart.length; i++) {
+        let item = cart[i];
+        cartItems += `
+        <div class="cart-item">
+          <span class="cart-item-title">${item.title}</span>
+          <span class="cart-item-quantity">x${item.quantity}</span>
+          <span class="cart-item-price">${item.price}</span>
+          <div class="cart-item-controls">
+            <button class="add-item" data-id="${item.id}">+</button>
+            <button class="remove-item" data-id="${item.id}">-</button>
+          </div>
+        </div>
+        `;
+        sum += item.price * item.quantity;
+      }
+      cartItems += `
+    <div class="cart-total">
+      Total: $${sum.toFixed(2)}
+    </div>
+  `;
+      $("#cart-items").html(cartItems);
+    }
+    
+    function removeItemFromCart(itemId) {
+    let item = cart.find(item => item.id === itemId);
+    if (item.quantity === 1) {
+      let updatedCart = cart.filter(item => item.id !== itemId);
+      cart = updatedCart;
+    } else {
+      item.quantity--;
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartItemCount();
+    
+    // Thêm phần tử mới cho giỏ hàng và hiển thị lại giỏ hàng mới nhất
+    let removedItem = $(`[data-id="${itemId}"]`).closest(".cart-item").html();
+    $("#cart-items-removed").append(`<div class="cart-item">${removedItem}</div>`);
+    displayCartItems();
   }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartItemCount();
   
-  // Thêm phần tử mới cho giỏ hàng và hiển thị lại giỏ hàng mới nhất
-  let removedItem = $(`[data-id="${itemId}"]`).closest(".cart-item").html();
-  $("#cart-items-removed").append(`<div class="cart-item">${removedItem}</div>`);
-  displayCartItems();
-}
-
-<<<<<<< HEAD
--function addItemToCart(itemId) {
-=======
-function addItemToCart(itemId) {
->>>>>>> parent of fd69089 (Update cart.html)
-  let item = cart.find(item => item.id === itemId);
-  if (item) {
-    item.quantity++;
-  } else {
-    item = { id: itemId, title: "Product " + itemId, price: 10, quantity: 1 };
-    cart.push(item);
+  -function addItemToCart(itemId) {
+    let item = cart.find(item => item.id === itemId);
+    if (item) {
+      item.quantity++;
+    } else {
+      item = { id: itemId, title: "Product " + itemId, price: 10, quantity: 1 };
+      cart.push(item);
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartItemCount();
+    displayCartItems();
   }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartItemCount();
-  displayCartItems();
-}
-});
-</script>
+  });
+  </script>
