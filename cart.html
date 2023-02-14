@@ -94,10 +94,60 @@ hr {
   border: 1px solid lightgrey;
 }
 
-span.price {
+.cart-item-price {
   float: right;
   color: grey;
 }
+button.add-item,
+button.remove-item {
+  border: none;
+  background: none;
+  color: red;
+  display: block;
+}
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cart-item-title {
+  margin-right: 8px;
+}
+
+.item-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.add-item {
+  margin-right: 8px;
+}
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+}
+
+.remove-item {
+  margin-left:10px;
+  margin-right: 10px;
+}
+
+.fa-trash {
+  color: red;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+
 </style>
 <h1>Checkout</h1>
     <div class="row">
@@ -165,197 +215,91 @@ span.price {
       </div>
       <div class="col-25">
         <div class="container">
-          <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart-item-count">0</b></span></h4>
+          <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="cart-item-count"></b></span></h4>
           <div id="cart-items">
           </div>
-          <hr>
-          <p>Total <span class="price" style="color:black"><b id="cart-total">$0</b></span></p>
+
         </div>
       </div>      
     </div>
 
 <script>
-<<<<<<< HEAD
 $(document).ready(function() {
-displayCart();
-});
-
-let displayCart = () => {
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let total = 0;
-
-let cartContainer = $(".checkout");
-let cartItems = $("<div></div>");
-cartItems.html("<h4>Cart<span class='price' style='color:black'><i class='fa fa-shopping-cart'></i> <b>" + cart.length + "</b></span></h4><hr>");
-
-for (let i = 0; i < cart.length; i++) {
-const item = cart[i];
-const itemPrice = parseFloat(item.price.replace('$', ''));
-if (!isNaN(itemPrice)) {
-total += itemPrice * item.quantity;
-}
-let itemElement = $("<p></p>");
-itemElement.html(item.title + "&nbsp" + "x" + item.quantity + "&nbsp");
-
-let removeBtn = $("<button class='remove-item'>x</button>");
-removeBtn.click(function() {
-  removeItem(item.id);
-});
-itemElement.prepend(removeBtn);
-
-let increaseBtn = $("<button class='increase-item increase-decrease'> +</button>");
-increaseBtn.click(function() {
-  increaseItem(item.id);
-});
-itemElement.append(increaseBtn);
-
-let decreaseBtn = $("<button class='decrease-item increase-decrease'>-</button>");
-decreaseBtn.click(function() {
-  decreaseItem(item.id);
-});
-itemElement.append(decreaseBtn);
-
-itemElement.append("<span class='price'>" + item.price + "</span>");
-
-cartItems.append(itemElement);
-}
-    
-let totalElement = $("<p></p>");
-totalElement.html("Total <span class='price' style='color:black'><b>$" + Math.round(total * 100) / 100 + "</b></span>");
-cartItems.append(totalElement);
-
-cartContainer.html("");
-cartContainer.append(cartItems);
-};
-
-const decreaseItem = (id) => {
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-for (let i = 0; i < cart.length; i++) {
-if (cart[i].id === id) {
-cart[i].quantity--;
-if (cart[i].quantity <= 0) {
-cart.splice(i, 1);
-}
-break;
-}
-}
-    
-localStorage.setItem("cart", JSON.stringify(cart));
-displayCart();
-};
-    
-const increaseItem = (id) => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id === id) {
-            cart[i].quantity++;
-            break;
-        }
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    displayCart();
-};
-
-const removeItem = (id) => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id === id) {
-            cart.splice(i, 1);
-            break;
-        }
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    displayCart();
-};
-
-$(document).ready(function() {
-    displayCart();
-
-    $(".checkout").on("click", ".remove", function() {
-        let id = $(this).data("id");
-        removeItem(id);
-    });
-
-    $(".checkout").on("click", ".decrease", function() {
-        let id = $(this).data("id");
-        decreaseQuantity(id);
-    });
-});
-    
-</script>
-=======
-window.onload = function() {
-  displayCart();
-}
-
-const displayCart = () => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  let cartItemCount = document.querySelector("#cart-item-count");
-  let cartItems = document.querySelector("#cart-items");
-  let cartTotal = document.querySelector("#cart-total");
->>>>>>> parent of f49a472 (V1)
 
-  // Tính tổng số sản phẩm
-  let itemCount = 0;
-  for (let i = 0; i < cart.length; i++) {
-    itemCount += cart[i].quantity;
+  // Update the cart item count
+  updateCartItemCount();
+
+  // Display the cart items
+  displayCartItems();
+
+  // Add event listener to remove item from cart
+  $(document).on("click", ".remove-item", function(event) {
+  event.preventDefault();
+  let itemId = $(this).data("id");
+  removeItemFromCart(itemId);
+});
+$(document).on("click", ".add-item", function(event) {
+  event.preventDefault();
+  let itemId = $(this).data("id");
+  addItemToCart(itemId);
+});
+
+  function updateCartItemCount() {
+    let itemCount = 0;
+    for (let i = 0; i < cart.length; i++) {
+      itemCount += cart[i].quantity;
+    }
+    $("#cart-item-count").text(itemCount);
   }
-  cartItemCount.innerHTML = itemCount;
 
-  // Hiển thị sản phẩm trong giỏ hàng
-  cartItems.innerHTML = "";
-  let total = 0;
+  function displayCartItems() {
+  let cartItems = "";
   for (let i = 0; i < cart.length; i++) {
     let item = cart[i];
-    total += item.price * item.quantity;
-    cartItems.innerHTML += `
-      <p>
-        <a href="#">${item.title}</a> 
-        <span class="price">$${item.price}</span>
-        <button class="btn btn-info btn-sm" onclick="updateCartQuantity(${item.id}, -1)">-</button>
-        <span class="badge badge-secondary">${item.quantity}</span>
-        <button class="btn btn-info btn-sm" onclick="updateCartQuantity(${item.id}, 1)">+</button>
-        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">X</button>
-      </p>
+    cartItems += `
+    <div class="cart-item">
+  <span class="cart-item-title">${item.title}</span>
+  <span class="cart-item-price">${item.price}</span>
+  <div class="cart-item-controls">
+    <button class="add-item" data-id="${item.id}">+</button>
+    <button class="remove-item" data-id="${item.id}">-</button>
+  </div>
+  
+</div>
+
     `;
   }
-  cartTotal.innerHTML = `$${total}`;
-};
-
-// Hàm cập nhật số lượng sản phẩm trong giỏ hàng
-const updateCartQuantity = (id, change) =>{let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let item = cart.find(i => i.id === id);
-if (item) {
-item.quantity = item.quantity + change;
-if (item.quantity <= 0) {
-cart = cart.filter(i => i.id !== id);
+  $("#cart-items").html(cartItems);
 }
+  function removeItemFromCart(itemId) {
+  let item = cart.find(item => item.id === itemId);
+  if (item.quantity === 1) {
+    let updatedCart = cart.filter(item => item.id !== itemId);
+    cart = updatedCart;
+  } else {
+    item.quantity--;
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartItemCount();
+  
+  // Thêm phần tử mới cho giỏ hàng và hiển thị lại giỏ hàng mới nhất
+  let removedItem = $(`[data-id="${itemId}"]`).closest(".cart-item").html();
+  $("#cart-items-removed").append(`<div class="cart-item">${removedItem}</div>`);
+  displayCartItems();
 }
-localStorage.setItem("cart", JSON.stringify(cart));
-};
 
-// Hàm xóa sản phẩm trong giỏ hàng
-const removeFromCart = id => {
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-cart = cart.filter(item => item.id !== id);
-
-localStorage.setItem("cart", JSON.stringify(cart));
-};
-
-// Hàm tăng số lượng sản phẩm trong giỏ hàng
-const increaseQuantity = id => {
-updateCartQuantity(id, 1);
-};
-
-// Hàm giảm số lượng sản phẩm trong giỏ hàng
-const decreaseQuantity = id => {
-updateCartQuantity(id, -1);
-};
-
+function addItemToCart(itemId) {
+  let item = cart.find(item => item.id === itemId);
+  if (item) {
+    item.quantity++;
+  } else {
+    item = { id: itemId, title: "Product " + itemId, price: 10, quantity: 1 };
+    cart.push(item);
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartItemCount();
+  displayCartItems();
+}
+});
 </script>
