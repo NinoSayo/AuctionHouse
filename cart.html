@@ -298,17 +298,28 @@
     displayCartItems();
   }
   
-  -function addItemToCart(itemId) {
+  function addItemToCart(itemId) {
     let item = cart.find(item => item.id === itemId);
     if (item) {
       item.quantity++;
     } else {
-      item = { id: itemId, title: "Product " + itemId, price: 10, quantity: 1 };
-      cart.push(item);
+      let $product = $(`[data-id="${itemId}"]`).closest('.single-product');
+      let id = $product.attr('id');
+      let title = $product.find(".product-title").text();
+      let price = $product.find(".product-price").text();
+  
+      // Thêm sản phẩm vào giỏ hàng
+      cart.push({
+        id: id,
+        title: title,
+        price: price,
+        quantity: 1
+      });
     }
-    localStorage.setItem("cart", JSON.stringify(cart));
+    // Lưu dữ liệu vào local storage
+    localStorage.setItem('cart', JSON.stringify(cart));
     updateCartItemCount();
     displayCartItems();
-  }
+   }
   });
   </script>

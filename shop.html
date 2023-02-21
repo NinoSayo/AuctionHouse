@@ -254,7 +254,7 @@ $(document).ready(function() {
         quantity: 1
       });
     }
-
+    alert(`${title} was added to cart!`);
     // Lưu giỏ hàng vào localstorage
     localStorage.setItem("cart", JSON.stringify(cart));
     
@@ -270,8 +270,9 @@ $(document).ready(function() {
     }
     $(".cart-item-count").text(itemCount);
   }
-
+  
   // Cập nhật số lượng sản phẩm trong giỏ hàng khi tải lại trang
   updateCartItemCount();
+  
 });
 </script>
